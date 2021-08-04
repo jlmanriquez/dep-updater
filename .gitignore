@@ -1,0 +1,14 @@
+# dir with json file with for test
+samples
+
+# executable
+dep-updater
+
+# os x
+.DS_Store
+
+# vscode
+.vscode
+
+# Idea IDE
+.idea

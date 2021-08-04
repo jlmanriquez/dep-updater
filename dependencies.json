@@ -1,0 +1,31 @@
+{
+    "workspace_home": "/Users/myuser/repos",
+    "repository": {
+        "url": "https://gitlab.com/user",
+        "username": "user",
+        "password": "password"
+    },
+    "working_branch": "update_dep",
+    "create_from": "main",
+    "projects": [
+        {
+            "enabled": true,
+            "name": "project_a",
+            "push": true
+        },
+        {
+            "enabled": true,
+            "name": "project_b",
+            "push": true
+        },
+        {
+            "enabled": true,
+            "name": "project_c",
+            "push": true
+        }
+    ],
+    "libraries": {
+        "@angular/material": "1.3.2",
+        "@another/library": "7.0.1"
+    }
+}
