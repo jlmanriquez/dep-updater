@@ -12,7 +12,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-type ApdaterProcess func(prj cfg.Project, wg *sync.WaitGroup) error
+type UpdaterProcess func(prj cfg.Project, wg *sync.WaitGroup) error
 
 func ConfigAppAction(c *cli.Context) error {
 	level := trace.InfoLevel
@@ -49,7 +49,7 @@ func CommitAndPushAction(c *cli.Context) error {
 	return executeAction(config, updater.CommitAndPush)
 }
 
-func executeAction(config cfg.Config, apdaterProcess ApdaterProcess) error {
+func executeAction(config cfg.Config, updaterProcess UpdaterProcess) error {
 	trace.InfoConsole("", fmt.Sprintf("🛠️  init working into: '%s'", config.WorkspaceHome))
 
 	projectsToUpdate := config.Projects
@@ -76,7 +76,7 @@ func executeAction(config cfg.Config, apdaterProcess ApdaterProcess) error {
 		wg.Add(1)
 
 		go func(project cfg.Project) {
-			if err := apdaterProcess(project, &wg); err != nil {
+			if err := updaterProcess(project, &wg); err != nil {
 				counter.Fail += 1
 				trace.ErrorConsole(project.Name, fmt.Sprintf("❌ %s", err.Error()))
 			} else {
