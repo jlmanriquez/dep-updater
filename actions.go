@@ -14,7 +14,7 @@ import (
 
 type UpdaterProcess func(prj cfg.Project, wg *sync.WaitGroup) error
 
-func ConfigAppAction(c *cli.Context) error {
+func ConfigAppAction(_ *cli.Context) error {
 	level := trace.InfoLevel
 	trace.Init(level)
 	return nil
@@ -30,9 +30,9 @@ func RunUpdaterAction(c *cli.Context) error {
 		return err
 	}
 
-	updater := updater.New(config)
+	u := updater.New(config)
 
-	return executeAction(config, updater.UpdateProjectDependencies)
+	return executeAction(config, u.UpdateProjectDependencies)
 }
 
 // CommitAndPushAction only run commit and push. This command considers the porjects
@@ -44,9 +44,9 @@ func CommitAndPushAction(c *cli.Context) error {
 		return err
 	}
 
-	updater := updater.New(config)
+	u := updater.New(config)
 
-	return executeAction(config, updater.CommitAndPush)
+	return executeAction(config, u.CommitAndPush)
 }
 
 func executeAction(config cfg.Config, updaterProcess UpdaterProcess) error {
