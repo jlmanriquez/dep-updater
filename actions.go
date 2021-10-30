@@ -90,7 +90,7 @@ func executeAction(config cfg.Config, updaterProcess UpdaterProcess) error {
 	trace.InfoConsole(
 		"",
 		fmt.Sprintf("🏁 done, %d projects. OK: %d, Fail: %d, Disabled: %d",
-			(counter.Ok+counter.Disabled+counter.Fail),
+			counter.Ok+counter.Disabled+counter.Fail,
 			counter.Ok,
 			counter.Fail,
 			counter.Disabled))
