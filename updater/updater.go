@@ -120,7 +120,7 @@ func (u *Updater) updateVersionsInFile(projectName, projectPath string) error {
 	}
 
 	if changes {
-		ioutil.WriteFile(packageJsonFilePath, []byte(data), 0644)
+		_ = ioutil.WriteFile(packageJsonFilePath, []byte(data), 0644)
 		trace.Infop(projectName, "update package.json file, done")
 	} else {
 		trace.Infop(projectName, "no dependencies found in package.json")
